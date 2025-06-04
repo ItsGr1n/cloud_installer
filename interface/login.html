@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Autentificare</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+    <h2 class="text-center">Autentificare</h2>
+
+    <!-- Formular de logare -->
+    <form id="loginForm" class="mt-4">
+        <div class="form-check">
+            <input type="checkbox" id="localServer" class="form-check-input">
+            <label for="localServer" class="form-check-label">Server Local</label>
+        </div>
+
+        <div id="serverFields">
+            <input type="text" id="serverIP" class="form-control mt-2" placeholder="IP Server">
+            <input type="text" id="username" class="form-control mt-2" placeholder="Nume Utilizator">
+            <input type="password" id="password" class="form-control mt-2" placeholder="Parolă">
+        </div>
+
+        <button type="button" class="btn btn-primary mt-3" onclick="login()">Login</button>
+    </form>
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>

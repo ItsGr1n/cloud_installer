@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestionare Fișiere</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar îngust -->
+            <nav class="col-md-2 bg-dark text-white d-flex flex-column p-3 vh-100">
+                <h4>Control</h4>
+                <button id="memoryBtn" class="btn btn-secondary mb-2">Memorie folosită</button>
+                <button id="fileTypesBtn" class="btn btn-secondary mb-2">Tipuri de fișiere</button>
+            </nav>
+
+            <!-- Conținut principal -->
+            <main class="col-md-10 p-4">
+                <!-- Câmp de căutare -->
+                <div class="d-flex justify-content-center mb-3">
+                    <input type="text" id="searchInput" class="form-control w-50" placeholder="Caută fișiere după denumire...">
+                </div>
+
+                <h2 class="text-center">Gestionare Fișiere</h2>
+
+                <!-- Formular de upload -->
+                <form action="/upload" method="POST" enctype="multipart/form-data" class="mt-3">
+                    <input type="file" name="file" class="form-control mb-2">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+
+                <!-- Conținut dinamic -->
+                <div id="dynamicContent">
+                    <h4 class="mt-4">Fișiere disponibile:</h4>
+                    <ul id="fileList" class="list-group">
+                    <!-- Fișierele vor fi încărcate dinamic aici -->
+                </ul>
+
+                    <canvas id="chartCanvas" style="display: none;"></canvas>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        // Filtrare fișiere
+        document.getElementById("searchInput").addEventListener("input", function() {
+            let searchValue = this.value.toLowerCase();
+            let files = document.querySelectorAll("#fileList li");
+            
+            files.forEach(file => {
+                if (file.textContent.toLowerCase().includes(searchValue)) {
+                    file.style.display = "block";
+                } else {
+                    file.style.display = "none";
+                }
+            });
+        });
+
+        // Ștergere fișiere selectate
+        document.getElementById("deleteBtn").addEventListener("click", function() {
+            let checkboxes = document.querySelectorAll(".fileCheckbox:checked");
+
+            checkboxes.forEach(checkbox => {
+                checkbox.closest("li").remove();
+            });
+        });
+    </script>
+
+</body>
+</html>
